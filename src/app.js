@@ -1,14 +1,14 @@
 const express = require('express');
 const connectDb=require("./config/database");
-const user = require("./models/user");
+const User = require("./models/user");
 const app = express();
 
 app.post("/signup",async(req,res)=>{
     const user= new User({
-        firstName:"Vansh",
+        firstName:"Vidhi",
         lastName:"Garg",
-        email:"vansh@garg.com",
-        password:"vansh@123",
+        email:"vidhi@garg.com",
+        password:"vidhi@123",
     });
 
     try{
