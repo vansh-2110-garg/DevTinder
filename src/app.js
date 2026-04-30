@@ -20,6 +20,7 @@ app.post("/signup",async(req,res)=>{
     }
 });
 
+//get user by email
 app.get("/user",async (req,res)=>{
     const userEmail=req.body.email;
     try{
@@ -42,6 +43,31 @@ app.get("/feed",async(req,res)=>{
         res.send(users);
     }
     catch(err){
+        res.status(400).send("something went wrong");
+    }
+})
+
+// delete user by id
+app.delete("/user",async (req,res)=>{
+    const userId=req.body.userId;
+    try{
+        const users=await User.findByIdAndDelete(userId);
+        res.send("User Deleted Successfully");
+    }
+    catch(err){
+        res.status(400).send("something went wrong");
+    }
+})
+
+//Update data of a user
+app.patch("/user",async(req,res)=>{
+    const userId=req.body.userId;
+    const data=req.body;
+    try{
+        const user = await User.findByIdAndUpdate(userId,data,{returnDocument:"before"});
+        console.log(user);
+        res.send("user updated successfully");
+    } catch(err){
         res.status(400).send("something went wrong");
     }
 })
