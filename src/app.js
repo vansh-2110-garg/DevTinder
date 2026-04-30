@@ -2,13 +2,14 @@ const express = require('express');
 const connectDb=require("./config/database");
 const User = require("./models/user");
 const app = express();
+require("dotenv").config();
 
 app.post("/signup",async(req,res)=>{
     const user= new User({
-        firstName:"Vidhi",
+        firstName:"Vansh",
         lastName:"Garg",
-        email:"vidhi@garg.com",
-        password:"vidhi@123",
+        email:"Vansh@garg.com",
+        password:"Vansh@123",
     });
 
     try{
@@ -22,7 +23,7 @@ app.post("/signup",async(req,res)=>{
 
 connectDb().then(()=>{
     console.log("database connected successfully");
-    app.listen(3000,()=>{
+    app.listen(process.env.PORT,()=>{
     console.log("Server is successfully listening on port 3000...");
 });
 }).catch((err)=>{
