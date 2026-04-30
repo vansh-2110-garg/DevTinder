@@ -4,13 +4,12 @@ const User = require("./models/user");
 const app = express();
 require("dotenv").config();
 
+
+app.use(express.json());
+
 app.post("/signup",async(req,res)=>{
-    const user= new User({
-        firstName:"Vansh",
-        lastName:"Garg",
-        email:"Vansh@garg.com",
-        password:"Vansh@123",
-    });
+    //creating a new instance of user model
+    const user= new User(req.body);
 
     try{
         await user.save();
