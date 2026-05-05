@@ -28,7 +28,9 @@ app.get("/user",async (req,res)=>{
         if(users.length==0){
             res.status(404).send("User not found");
         }
-        res.send(users);
+        else{
+            res.send(users);
+        }
     }
     catch(err){
         res.status(400).send("something went wrong");
