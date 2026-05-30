@@ -60,10 +60,16 @@ const userSchema = new mongoose.Schema({
     },
     about:{
         type:String,
-        default:"Hey there! I am using DevTinder."
+        default:"Hey there! I am using DevTinder.",
+        maxlength:250
     },
     skills:{
         type: [String],
+        validate(value){
+            if(value.length>20){
+                throw new Error("Cant Add more than 20 skills");
+            }
+        }
     }
 },{
     timestamps:true
